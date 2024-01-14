@@ -33,4 +33,6 @@ export default {
 
 - https://ui.shadcn.com/docs/installation/vite
 
-## 
+## Zustand docs
+
+- https://docs.pmnd.rs/zustand/guides/typescript
