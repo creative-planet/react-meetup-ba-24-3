@@ -1,4 +1,6 @@
 import { cn } from "@/lib/utils";
+import React from "react";
+import { useEffect, useRef } from "react";
 
 type Props = {
   totalStars: number;
@@ -7,6 +9,17 @@ type Props = {
 };
 
 const StarRating = ({ totalStars, rating, onChange }: Props) => {
+  const refs = useRef(
+    Array(totalStars)
+      .fill(null)
+      .map(() => React.createRef<HTMLSpanElement>())
+  );
+  
+  useEffect(() => {
+    const ref = refs.current?.[totalStars - 1]?.current;
+    if (ref) ref.focus();
+  }, [totalStars]);
+
   return (
     <div className={cn("items-center")}>
       {[...Array(totalStars)].map((_, index) => (
@@ -14,6 +27,7 @@ const StarRating = ({ totalStars, rating, onChange }: Props) => {
           key={index}
           onClick={() => onChange(index + 1)}
           tabIndex={0}
+          ref={refs?.current[index]}
           onKeyDownCapture={(e) => e.key === "Enter" && onChange(index + 1)}
           className="text-4xl md:text-6xl"
           style={{
