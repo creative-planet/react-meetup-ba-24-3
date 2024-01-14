@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import StarRating from "./StarRating";
 import { useFeedbackStore } from "./data";
 import { Input } from "./ui/input";
@@ -7,6 +8,8 @@ import { Separator } from "./ui/separator";
 const FeedbackForm = () => {
   const form = useFeedbackStore((state) => state.form);
   const updateForm = useFeedbackStore((state) => state.updateForm);
+  const nameRef = useRef<HTMLInputElement>(null);
+  const emailRef = useRef<HTMLInputElement>(null);
 
   return (
     <div className="container max-w-md">
@@ -18,13 +21,17 @@ const FeedbackForm = () => {
         <Label htmlFor="rating">How would you rate this meetup?</Label>
         <StarRating
           totalStars={5}
-          onChange={(rating) => updateForm({ rating })}
+          onChange={(rating) => {
+            updateForm({ rating });
+            nameRef.current?.focus();
+          }}
           rating={form.rating || 0}
         />
       </div>
       <div className="mt-10">
         <Label htmlFor="name">What's your name?</Label>
         <Input
+          ref={nameRef}
           id="name"
           name="name"
           value={form.name}
@@ -37,6 +44,7 @@ const FeedbackForm = () => {
       <div className="mt-10">
         <Label htmlFor="email">What's your email?</Label>
         <Input
+          ref={emailRef}
           id="email"
           name="email"
           value={form.email}
