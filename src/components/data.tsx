@@ -1,15 +1,20 @@
 import { create } from "zustand";
 
+interface FeedbackFormState {
+  name?: string;
+  email?: string;
+}
 interface FeedbackStore {
-  form: {
-    name?: string | null;
-    email?: string | null;
-  };
+  form: FeedbackFormState;
+  updateForm: (form: Partial<FeedbackFormState>) => void;
 }
 
-export const useFeedbackStore = create<FeedbackStore>()(() => ({
+export const useFeedbackStore = create<FeedbackStore>()((set) => ({
   form: {
-    name: null,
-    email: null,
+    name: "",
+    email: "",
+  },
+  updateForm: (partial: Partial<FeedbackFormState>) => {
+    set((state) => ({ form: { ...state.form, ...partial } }));
   },
 }));
