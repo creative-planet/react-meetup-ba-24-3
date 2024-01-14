@@ -24,9 +24,6 @@ const StarRating = ({ totalStars, rating, onChange }: Props) => {
           &#9733;
         </span>
       ))}
-      <p className={cn("text-4xl", !rating ? "opacity-0" : "")}>
-        {rating} / {totalStars}
-      </p>
     </div>
   );
 };

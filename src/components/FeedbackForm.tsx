@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import StarRating from "./StarRating";
 import { useFeedbackStore } from "./data";
 import { Input } from "./ui/input";
@@ -9,28 +9,6 @@ const FeedbackForm = () => {
   const updateForm = useFeedbackStore((state) => state.updateForm);
   const nameRef = useRef<HTMLInputElement>(null);
   const emailRef = useRef<HTMLInputElement>(null);
-  const [focused, setFocused] = useState<null | "name" | "email" | "rating">(
-    "rating"
-  );
-
-  useEffect(() => {
-    const onBlur = () => {
-      setFocused(null);
-    };
-    const onFocus = (e: FocusEvent) => {
-      if (e.target === nameRef.current) {
-        setFocused("name");
-      } else if (e.target === emailRef.current) {
-        setFocused("email");
-      }
-    };
-    document.addEventListener("focusin", onFocus);
-    document.addEventListener("focusout", onBlur);
-    return () => {
-      document.addEventListener("focusin", onFocus);
-      document.addEventListener("focusout", onBlur);
-    };
-  }, []);
 
   return (
     <div className="container max-w-md">
@@ -41,7 +19,7 @@ const FeedbackForm = () => {
       <FormSection
         htmlFor="rating"
         label="How would you rate this meetup?"
-        focused={focused === "rating"}
+        focusedByDefault={true}
       >
         <StarRating
           totalStars={5}
@@ -52,11 +30,7 @@ const FeedbackForm = () => {
           rating={form.rating || 0}
         />
       </FormSection>
-      <FormSection
-        htmlFor="name"
-        label="What's your name?"
-        focused={focused === "name"}
-      >
+      <FormSection htmlFor="name" label="What's your name?">
         <Input
           ref={nameRef}
           id="name"
@@ -67,11 +41,7 @@ const FeedbackForm = () => {
           }}
         />
       </FormSection>
-      <FormSection
-        htmlFor="email"
-        label="What's your email?"
-        focused={focused === "email"}
-      >
+      <FormSection htmlFor="email" label="What's your email?">
         <Input
           ref={emailRef}
           id="email"
