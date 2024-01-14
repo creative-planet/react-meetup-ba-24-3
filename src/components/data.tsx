@@ -20,3 +20,10 @@ export const useFeedbackStore = create<FeedbackStore>()((set) => ({
     set((state) => ({ form: { ...state.form, ...partial } }));
   },
 }));
+
+export const validateForm = (
+  form: FeedbackFormState
+): Partial<Record<keyof FeedbackFormState, string>> | true => {
+  if (!form.rating) return { rating: "Rating is required" };
+  return true;
+};
