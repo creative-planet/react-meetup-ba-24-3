@@ -14,10 +14,12 @@ const StarRating = ({ totalStars, rating, onChange }: Props) => {
       .fill(null)
       .map(() => React.createRef<HTMLSpanElement>())
   );
-  
+
   useEffect(() => {
-    const ref = refs.current?.[totalStars - 1]?.current;
-    if (ref) ref.focus();
+    setTimeout(() => {
+      const ref = refs.current?.[totalStars - 1]?.current;
+      if (ref) ref.focus();
+    }, 0);
   }, [totalStars]);
 
   return (
@@ -28,7 +30,9 @@ const StarRating = ({ totalStars, rating, onChange }: Props) => {
           onClick={() => onChange(index + 1)}
           tabIndex={0}
           ref={refs?.current[index]}
-          onKeyDownCapture={(e) => e.key === "Enter" && onChange(index + 1)}
+          onKeyDownCapture={(e) =>
+            (e.key === "Enter" || e.code === "Space") && onChange(index + 1)
+          }
           className="text-4xl md:text-6xl"
           style={{
             cursor: "pointer",
