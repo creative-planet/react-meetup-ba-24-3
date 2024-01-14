@@ -2,12 +2,16 @@
 
 Public repository for a presentation on a React Meetup.
 
-## Contents
+## Main focus
 
 1. Focusing input elements
    1. Autofocus
    2. Accessibility & tab navigation
    3. After an action
+2. Technical showcase
+   1. Zustand
+   2. Tailwind
+   3. Shadcn/ui
 
 ## Technical notes
 
@@ -42,10 +46,10 @@ export default {
 - Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
 - Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
 
-### Setup shadcn/ui
-
-- https://ui.shadcn.com/docs/installation/vite
-
 ### Zustand docs
 
 - https://docs.pmnd.rs/zustand/guides/typescript
+
+### Setup shadcn/ui
+
+- https://ui.shadcn.com/docs/installation/vite
