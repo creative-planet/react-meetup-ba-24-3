@@ -2,8 +2,8 @@ import { useRef } from "react";
 import StarRating from "./StarRating";
 import { useFeedbackStore } from "./data";
 import { Input } from "./ui/input";
-import { Label } from "./ui/label";
 import { Separator } from "./ui/separator";
+import FormSection from "./FormSection";
 
 const FeedbackForm = () => {
   const form = useFeedbackStore((state) => state.form);
@@ -17,8 +17,7 @@ const FeedbackForm = () => {
       <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
         Feedback Form
       </h1>
-      <div className="mt-10">
-        <Label htmlFor="rating">How would you rate this meetup?</Label>
+      <FormSection htmlFor="rating" label="How would you rate this meetup?">
         <StarRating
           totalStars={5}
           onChange={(rating) => {
@@ -27,9 +26,8 @@ const FeedbackForm = () => {
           }}
           rating={form.rating || 0}
         />
-      </div>
-      <div className="mt-10">
-        <Label htmlFor="name">What's your name?</Label>
+      </FormSection>
+      <FormSection htmlFor="name" label="What's your name?">
         <Input
           ref={nameRef}
           id="name"
@@ -39,10 +37,9 @@ const FeedbackForm = () => {
             updateForm({ name: e.target.value });
           }}
         />
-      </div>
+      </FormSection>
       <Separator />
-      <div className="mt-10">
-        <Label htmlFor="email">What's your email?</Label>
+      <FormSection htmlFor="email" label="What's your email?">
         <Input
           ref={emailRef}
           id="email"
@@ -52,7 +49,7 @@ const FeedbackForm = () => {
             updateForm({ email: e.target.value });
           }}
         />
-      </div>
+      </FormSection>
     </div>
   );
 };
