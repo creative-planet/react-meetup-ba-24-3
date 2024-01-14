@@ -1,6 +1,7 @@
 import { create } from "zustand";
 
 interface FeedbackFormState {
+  rating?: number;
   name?: string;
   email?: string;
 }
@@ -11,6 +12,7 @@ interface FeedbackStore {
 
 export const useFeedbackStore = create<FeedbackStore>()((set) => ({
   form: {
+    rating: 0,
     name: "",
     email: "",
   },

@@ -1,3 +1,4 @@
+import StarRating from "./StarRating";
 import { useFeedbackStore } from "./data";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
@@ -13,25 +14,37 @@ const FeedbackForm = () => {
       <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
         Feedback Form
       </h1>
-      <Label htmlFor="name">What's your name?</Label>
-      <Input
-        id="name"
-        name="name"
-        value={form.name}
-        onChange={(e) => {
-          updateForm({ name: e.target.value });
-        }}
-      />
+      <div className="mt-10">
+        <Label htmlFor="rating">How would you rate this meetup?</Label>
+        <StarRating
+          totalStars={5}
+          onChange={(rating) => updateForm({ rating })}
+          rating={form.rating || 0}
+        />
+      </div>
+      <div className="mt-10">
+        <Label htmlFor="name">What's your name?</Label>
+        <Input
+          id="name"
+          name="name"
+          value={form.name}
+          onChange={(e) => {
+            updateForm({ name: e.target.value });
+          }}
+        />
+      </div>
       <Separator />
-      <Label htmlFor="email">What's your email?</Label>
-      <Input
-        id="email"
-        name="email"
-        value={form.email}
-        onChange={(e) => {
-          updateForm({ email: e.target.value });
-        }}
-      />
+      <div className="mt-10">
+        <Label htmlFor="email">What's your email?</Label>
+        <Input
+          id="email"
+          name="email"
+          value={form.email}
+          onChange={(e) => {
+            updateForm({ email: e.target.value });
+          }}
+        />
+      </div>
     </div>
   );
 };
