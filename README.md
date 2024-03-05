@@ -9,11 +9,18 @@ Public repository for a presentation on a React Meetup.
    2. Accessibility & tab navigation
    3. After an action
 2. Technical showcase
-   1. Zustand
-   2. Tailwind
-   3. Shadcn/ui
+   1. Zustand https://github.com/pmndrs/zustand
+   2. Tailwind https://tailwindcss.com/
+   3. Shadcn/ui https://ui.shadcn.com
+   4. TypeScript https://www.typescriptlang.org/
 
 ## Technical notes
+
+### Setup
+
+1. `npm create vite@latest react-meetup-ba -- --template=react-ts` 
+   (More examples: https://github.com/vitejs/awesome-vite#templates)
+2. https://ui.shadcn.com/docs/installation/vite
 
 ### React + TypeScript + Vite
 
